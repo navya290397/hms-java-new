@@ -1,0 +1,21 @@
+1. Add delete booking functionality
+Booking Deletion Criteria
+Bookings can be deleted if:
+The booking has not been checked in yet.
+The booking is within the cancellable period (if any cancellation policy applies).
+The payment has not been processed or is in a refundable state.
+Bookings cannot be deleted if:
+The user has already checked in.
+The cancellation period has passed (or is outside of the refundable window).
+The booking is associated with non-refundable rates (if applicable).
+A payment has been processed and is non-refundable.
+
+2. Generate unique booking id instead of auto increment
+The unique booking ID is a code that uniquely identifies a specific booking. Instead of relying on an auto-increment field in the database, you can generate this ID using various algorithms or formats. The key requirements include:
+Uniqueness: Each booking ID must be unique across the system.
+Traceability: The ID should provide enough information for tracking purposes.
+Security: The booking ID should not expose sensitive data such as customer information.                                                     
+
+3. Add payment API to do a payment
+Implement payment API endpoints to:
+Initiate a payment (e.g., create a payment intent).                                                     
