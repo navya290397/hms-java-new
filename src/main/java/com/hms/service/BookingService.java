@@ -15,6 +15,9 @@ public class BookingService {
     }
 
     public Booking createBooking(Booking booking) {
+        String bookingId = UUID.randomUUID().toString();
+        booking.setId(bookingId);
+
         return bookingRepository.save(booking);
     }
 
@@ -22,7 +25,19 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    public Booking getBookingById(Long id) {
+    public Booking getBookingById(String id) {
         return bookingRepository.findById(id).orElse(null);
+    }
+
+    public boolean deleteBooking(String id) {
+        if (bookingRepository.existsById(id)) {
+            bookingRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public void deleteAllBookings() {
+        bookingRepository.deleteAll();
     }
 }
