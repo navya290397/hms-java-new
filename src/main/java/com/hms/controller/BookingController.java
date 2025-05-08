@@ -17,19 +17,31 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping
+    @PostMapping("/createBooking")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
         return new ResponseEntity<>(bookingService.createBooking(booking), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/getAllBookings")
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getBooking/{id}")
     public ResponseEntity<Booking> getBookingById(@PathVariable Long id) {
         Booking booking = bookingService.getBookingById(id);
         return booking != null ? ResponseEntity.ok(booking) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/deleteBooking/{id}")
+    public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
+        boolean isDeleted = bookingService.deleteBooking(id);
+        return isDeleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/deleteBookings")
+    public ResponseEntity<Void> deleteAllBookings() {
+        bookingService.deleteAllBookings();
+        return ResponseEntity.noContent().build();
     }
 }
