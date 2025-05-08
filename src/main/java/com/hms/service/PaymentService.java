@@ -14,4 +14,7 @@ public class PaymentService {
     }
 
     // Add methods for payment processing
+    public void doPayment() {
+        paymentRepository.save();
+    }
 }
